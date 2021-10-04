@@ -1,1 +1,1 @@
-print('pie')
+role_manager.register("/Town Investigative/**")

@@ -1,1 +1,3 @@
-role_manager.register("/Town Investigative/**")
+
+
+extensionLib.register("/Town Investigative/*")

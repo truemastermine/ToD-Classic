@@ -1,30 +1,28 @@
--- @module ROLE
+ROLE.index="doctor"
+ROLE.team="town"
+ROLE.collection="protective"
+ROLE.classification={ "healer", "self_healer" }
 
-local self_heal = function()
+ROLE.limit=nil
+function ROLE:INIT()
 
 end
 
-local heal = function()
+local CLASSIC_BASE_TYPE={}
 
-end
+CLASSIC_BASE_TYPE.label="Doctor"
+CLASSIC_BASE_TYPE.icon="🥼"
+CLASSIC_BASE_TYPE.attack="None"
+CLASSIC_BASE_TYPE.defense="None"
+CLASSIC_BASE_TYPE.description={ "If see this text, the mod creator was lazy." }
 
-local attribute_data = {
-_GOAL = TEAM_town._GOAL,
-_IDENTITY = { sheriff = false, _INVEST = 'doctor', _EXACT = 'Doctor' },
-_SPECIAL = {
-	{ _LABEL = 'heal', _ICON = '🩺', _PRIORITY = 3, _TARGETS = '!self', _CALL = heal }, -- Doctor heart listener
-	{ _LABEL = 'self', _ICON = '💉', _PRIORITY = 3, _TARGETS = 'self', _CALL = self_heal } -- Syringe
-}}
+CLASSIC_BASE_TYPE.special={
+	{ target="self", label="Heal", icon="💉", priority=3, call=function() game.phase.addAction() end }, -- Syringe
+	{ target="nself", label="Heal", icon="🩺", priority=3, call=function() game.phase.addAction() end } -- Doctor heart listener
+}
 
-local role_data = {
-	index = 'doctor',
-	label = 'Doctor',
-	icon = '������', -- doctor heart hearer
-	description = {},
+CLASSIC_BASE_TYPE.sheriff=false
+CLASSIC_BASE_TYPE.investigator="knife" -- 🔪
+CLASSIC_BASE_TYPE.exact_role="doctor"
 
-	team = TEAM_town,
-	collection = 'protective',
-	tag = { 'healer', 'defends', 'self_defense' },
-	attributes = attribute_data }
-
-role_manager.createRole(role_data)
+ROLE.classic.base=CLASSIC_BASE_TYPE

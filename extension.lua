@@ -1,3 +1,5 @@
+extensionLib.createTeam()
+
 extensionLib.requireType({ _INDEX="Base", _FILE="Base", _START="DayOne.lua", _ABSTRACT=true,
 						   _ORDER={ "Morning", "Discussion", "Vote", "Night" }, _OTHER={ "Defense", "Guilt" } })
 
